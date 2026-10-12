@@ -50,9 +50,13 @@ export function findProductsBySupplier(products, supplier) {
 }
 
 export function groupProductsBySupplierCount(products) {
-  const result = {};
+  const result = new Map();
   for (const product of products) {
-    (result[suppliersOf(product).length] ??= []).push(product);
+    const count = suppliersOf(product).length;
+    if (!result.has(count)) {
+      result.set(count, []);
+    }
+    result.get(count).push(product);
   }
   return result;
 }

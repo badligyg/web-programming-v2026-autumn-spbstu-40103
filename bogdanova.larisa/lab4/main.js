@@ -94,7 +94,7 @@ function renderStats() {
 
   const groups = groupProductsBySupplierCount(products);
   document.getElementById('stat-groups').textContent =
-    Object.entries(groups)
+    [...groups]
       .map(
         ([count, items]) =>
           `${count}: ${items.map((product) => product.name).join(', ')}`,
